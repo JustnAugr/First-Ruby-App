@@ -9,34 +9,38 @@
         <% end %>
       </ul>
     </div>
+
   <% end %>
 
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
+  <div class="field input-group mb-3 input-space">
+    <%= form.label :first_name, class:"input-group-text input-space", id:"basicaddon1" %>
+    <%= form.text_field :first_name, class:"form-control", placeholder: :first_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
+  <div class="field input-group mb-3">
+    <%= form.label :last_name, class:"input-group-text input-space", id:"basicaddon1" %>
+    <%= form.text_field :last_name, class:"form-control", placeholder: :last_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+
+  <div class="field input-group mb-3">
+    <%= form.label :email, class:"input-group-text input-space", id:"basicaddon1" %>
+    <%= form.text_field :email, class:"form-control", placeholder: :email %>
   </div>
 
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
+  <div class="field input-group mb-3">
+    <%= form.label :phone, class:"input-group-text input-space", id:"basicaddon1" %>
+    <%= form.text_field :phone, class:"form-control", placeholder: :phone %>
   </div>
 
-  <div class="field">
-    <%= form.label :twitter %>
-    <%= form.text_field :twitter %>
+  <div class="field input-group mb-3">
+    <%= form.label :twitter, class:"input-group-text input-space", id:"basicaddon1" %>
+    <%= form.text_field :twitter, class:"form-control", placeholder: :twitter %>
   </div>
+
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-secondary mb-3" %>
   </div>
+
 <% end %>
