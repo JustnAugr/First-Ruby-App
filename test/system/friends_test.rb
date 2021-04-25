@@ -6,12 +6,12 @@ class FriendsTest < ApplicationSystemTestCase
   end
 
   test "visiting the index" do
-    visit friends_url
+    visit root_path
     assert_selector "h1", text: "Friends"
   end
 
   test "creating a Friend" do
-    visit friends_url
+    visit root_path
     click_on "New Friend"
 
     fill_in "Email", with: @friend.email
@@ -26,7 +26,7 @@ class FriendsTest < ApplicationSystemTestCase
   end
 
   test "updating a Friend" do
-    visit friends_url
+    visit root_path
     click_on "Edit", match: :first
 
     fill_in "Email", with: @friend.email
@@ -41,7 +41,7 @@ class FriendsTest < ApplicationSystemTestCase
   end
 
   test "destroying a Friend" do
-    visit friends_url
+    visit root_path
     page.accept_confirm do
       click_on "Destroy", match: :first
     end
