@@ -1,9 +1,12 @@
 class FriendsController < ApplicationController
   before_action :set_friend, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
 
   # GET /friends or /friends.json
   def index
-    @friends = Friend.all
+    @user = current_user
+    @friends = @user.friends.all
   end
 
   # GET /friends/1 or /friends/1.json
@@ -12,7 +15,8 @@ class FriendsController < ApplicationController
 
   # GET /friends/new
   def new
-    @friend = Friend.new
+    @user = current_user
+    @friend = @user.friends.build
   end
 
   # GET /friends/1/edit
@@ -21,7 +25,8 @@ class FriendsController < ApplicationController
 
   # POST /friends or /friends.json
   def create
-    @friend = Friend.new(friend_params)
+    @user = current_user
+    @friend = @user.friends.build(friend_params)
 
     respond_to do |format|
       if @friend.save
@@ -32,6 +37,11 @@ class FriendsController < ApplicationController
         format.json { render json: @friend.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def correct_user
+    @friend = current_user.friends.find_by(id: params[:id])
+    redirect_to root_path, notice: "Not Authotized to Edit This Friend" if @friend.nil?
   end
 
   # PATCH/PUT /friends/1 or /friends/1.json
@@ -51,7 +61,7 @@ class FriendsController < ApplicationController
   def destroy
     @friend.destroy
     respond_to do |format|
-      format.html { redirect_to friends_url, notice: "Friend was successfully destroyed." }
+      format.html { redirect_to root_path, notice: "Friend was successfully destroyed." }
       format.json { head :no_content }
     end
   end
